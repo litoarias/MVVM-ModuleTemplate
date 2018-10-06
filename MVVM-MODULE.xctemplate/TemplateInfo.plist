@@ -24,6 +24,25 @@
 			<key>Default</key>
 			<string>MyModel</string>
 		</dict>
+        <dict>
+            <key>Identifier</key>
+            <string>moduleType</string>
+            <key>Required</key>
+            <true/>
+            <key>Name</key>
+            <string>Type module:</string>
+            <key>Description</key>
+            <string>The type of module, with or without example</string>
+            <key>Type</key>
+            <string>popup</string>
+            <key>Default</key>
+            <string>Example template</string>
+            <key>Values</key>
+            <array>
+                <string>Example template</string>
+                <string>Basic template</string>
+            </array>
+        </dict>
 	</array>
 </dict>
 </plist>
