@@ -2,8 +2,5 @@
 
 import Foundation
 
-
-/// This is a model what is used to transfer data between UI and bussines 
-struct ___FILEBASENAMEASIDENTIFIER___ {
-
-}
+/// This is a model what is used to transfer data between UI and bussines
+struct ___FILEBASENAMEASIDENTIFIER___ { }

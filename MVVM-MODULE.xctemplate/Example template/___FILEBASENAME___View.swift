@@ -1,34 +1,52 @@
-//  ___FILEHEADER___
+//  
+//  MainView.swift
+//  TestMVVMContracts
+//
+//  Created by MPU8D0000001 on 17/10/2018.
+//  Copyright © 2018 MPU8D0000001. All rights reserved.
+//
 
 import UIKit
 
 
 /*
- THIS IS YOUR APPDELEGATE IMPLEMENTATION
+ * THIS IS YOUR APPDELEGATE IMPLEMENTATION
  
- func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
- let window = UIWindow(frame: UIScreen.main.bounds)
- window.rootViewController = UINavigationController(rootViewController: ___FILEBASENAMEASIDENTIFIER___.create(model: ___VARIABLE_productName:identifier___ViewModel(dataSource: ___VARIABLE_productName:identifier___DataSource())))
- window.makeKeyAndVisible()
- self.window = window
- return true
+ * func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+ * let window = UIWindow(frame: UIScreen.main.bounds)
+ * let mainView = MainView.create(viewModel: MainViewModel(dataSource: MainDataSource()))
+ * window.rootViewController = UINavigationController(rootViewController: mainView)
+ * window.makeKeyAndVisible()
+ * self.window = window
+ * return true
  }
- 
  */
 
-class ___FILEBASENAMEASIDENTIFIER___: UIViewController {
-
-    // Please connect me!
+final class ___FILEBASENAMEASIDENTIFIER___: UIViewController {
+    
+    // MARK: -  Outlets
+    
+    // 👀 Please connect me‼️ 👀
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    private var model: ___VARIABLE_productName:identifier___ViewModelType!
-    static func create(model: ___VARIABLE_productName:identifier___ViewModelType) -> ___FILEBASENAMEASIDENTIFIER___ {
-        let storyboard = UIStoryboard(name: "___FILEBASENAMEASIDENTIFIER___", bundle: Bundle(for: ___FILEBASENAMEASIDENTIFIER___.self))
-        let vc = storyboard.instantiateInitialViewController() as! ___FILEBASENAMEASIDENTIFIER___
-        vc.model = model
+    
+    // MARK: -  Properties
+    private var viewModel: ___VARIABLE_productName:identifier___ViewModel!
+    
+    
+    // MARK: -  Constructor    
+    static func create(viewModel: ___VARIABLE_productName:identifier___ViewModel) -> ___VARIABLE_productName:identifier___View {
+        let storyboard = UIStoryboard(name: "___VARIABLE_productName:identifier___View", bundle: Bundle(for: ___VARIABLE_productName:identifier___View.self))
+        let vc = storyboard.instantiateInitialViewController() as! ___VARIABLE_productName:identifier___View
+        vc.viewModel = viewModel
+        viewModel.view = vc
+        viewModel.dataSource?.viewModel = viewModel
         return vc
     }
+    
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,47 +55,49 @@ class ___FILEBASENAMEASIDENTIFIER___: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
-        model.delegate = self
-        model.bootstrap()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: NSStringFromClass(UITableViewCell.self))
+        viewModel.didLoadData()
+        activityIndicator.startAnimating()
     }
     
 }
 
-extension ___FILEBASENAMEASIDENTIFIER___: ViewModelDelegate {
+
+// MARK: - ___VARIABLE_productName:identifier___ViewModeltoViewContract
+
+extension ___VARIABLE_productName:identifier___View: ___VARIABLE_productName:identifier___ViewModelToViewContract {
     
-    func willLoadData() {
-        activityIndicator?.startAnimating()
+    
+    /// All data is clear, refresh table
+    func bootstrap() {
+        self.tableView.reloadData()
+        activityIndicator.stopAnimating()
     }
-    
-    func didLoadData() {
-        tableView.reloadData()
-        activityIndicator?.stopAnimating()
-    }
-    
 }
 
-extension ___FILEBASENAMEASIDENTIFIER___: UITableViewDelegate, UITableViewDataSource {
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension ___VARIABLE_productName:identifier___View: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return model.sections.count
+        return viewModel.sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.sections[section].rows.count
+        return viewModel.sections[section].rows.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return model.sections[section].name
+        return viewModel.sections[section].name
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let ___VARIABLE_productName:identifier___ = model.sections[indexPath.section].rows[indexPath.row]
-        cell.textLabel?.text = ___VARIABLE_productName:identifier___.name
-        cell.detailTextLabel?.text = ___VARIABLE_productName:identifier___.email
+        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(UITableViewCell.self), for: indexPath)
+        let test = viewModel.sections[indexPath.section].rows[indexPath.row]
+        cell.textLabel?.text = test.name
+        cell.detailTextLabel?.text = test.email
         return cell
     }
     
 }
-
-
