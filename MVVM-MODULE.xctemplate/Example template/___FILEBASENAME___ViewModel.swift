@@ -11,7 +11,7 @@ final class ___VARIABLE_productName:identifier___ViewModel {
     weak var view: ___VARIABLE_productName:identifier___View?
     
     // MARK: -  Properties
-    var dataSource: ___VARIABLE_productName:identifier___DataSource?
+    private var dataSource: ___VARIABLE_productName:identifier___DataSource?
     var sections: [(name: String, rows: [___VARIABLE_productName:identifier___ItemModel])] = []
     
     
