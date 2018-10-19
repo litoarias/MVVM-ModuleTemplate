@@ -11,14 +11,12 @@ struct ___VARIABLE_productName:identifier___ServiceModel: Codable {
 }
 
 /// Make request to obtain your bussines data
-class ___VARIABLE_productName:identifier___DataSource {
-    weak var viewModel: ___VARIABLE_productName:identifier___ViewModel?
-}
+class ___VARIABLE_productName:identifier___DataSource { }
 
 
 // MARK: - ___VARIABLE_productName:identifier___ViewModelToDataSource
 
-extension ___VARIABLE_productName:identifier___DataSource: ___VARIABLE_productName:identifier___ViewModelToDataSource {
+extension ___VARIABLE_productName:identifier___DataSource: ___VARIABLE_productName:identifier___DataSourceContract {
     
     /// This is an example of usage, you can delete it!!
     ///

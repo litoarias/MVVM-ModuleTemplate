@@ -14,7 +14,7 @@ import UIKit
  
  * func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
  * let window = UIWindow(frame: UIScreen.main.bounds)
- * let mainView = MainView.create(viewModel: MainViewModel(dataSource: MainDataSource()))
+ * let mainView = ___VARIABLE_productName:identifier___View.create(viewModel: ___VARIABLE_productName:identifier___ViewModel(dataSource: ___VARIABLE_productName:identifier___DataSource()))
  * window.rootViewController = UINavigationController(rootViewController: mainView)
  * window.makeKeyAndVisible()
  * self.window = window
@@ -41,7 +41,6 @@ final class ___FILEBASENAMEASIDENTIFIER___: UIViewController {
         let vc = storyboard.instantiateInitialViewController() as! ___VARIABLE_productName:identifier___View
         vc.viewModel = viewModel
         viewModel.view = vc
-        viewModel.dataSource?.viewModel = viewModel
         return vc
     }
     
@@ -65,10 +64,9 @@ final class ___FILEBASENAMEASIDENTIFIER___: UIViewController {
 
 // MARK: - ___VARIABLE_productName:identifier___ViewModeltoViewContract
 
-extension ___VARIABLE_productName:identifier___View: ___VARIABLE_productName:identifier___ViewModelToViewContract {
+extension ___VARIABLE_productName:identifier___View: ___VARIABLE_productName:identifier___ViewModelOutputContract {
     
-    
-    /// All data is clear, refresh table
+    // All data is clear, refresh table
     func bootstrap() {
         self.tableView.reloadData()
         activityIndicator.stopAnimating()

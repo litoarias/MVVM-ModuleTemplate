@@ -24,7 +24,7 @@ final class ___VARIABLE_productName:identifier___ViewModel {
 
 // MARK: - ___VARIABLE_productName:identifier___ViewToViewModelContract
 
-extension ___VARIABLE_productName:identifier___ViewModel: ___VARIABLE_productName:identifier___ViewToViewModelContract {
+extension ___VARIABLE_productName:identifier___ViewModel: ___VARIABLE_productName:identifier___ViewModelInputContract {
     
     func didLoadData() {
         loadData { [weak self] in
@@ -34,12 +34,6 @@ extension ___VARIABLE_productName:identifier___ViewModel: ___VARIABLE_productNam
     }
   
 }
-
-
-// MARK: - ___VARIABLE_productName:identifier___DataSourceToViewModel
-
-extension ___VARIABLE_productName:identifier___ViewModel: ___VARIABLE_productName:identifier___DataSourceToViewModel { }
-
 
 // MARK: - Private Methods
 
