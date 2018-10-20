@@ -11,12 +11,12 @@ final class ___VARIABLE_productName:identifier___ViewModel {
     weak var view: ___VARIABLE_productName:identifier___View?
     
     // MARK: -  Properties
-    private var dataSource: ___VARIABLE_productName:identifier___DataSource?
+    private var dataSource: ___VARIABLE_productName:identifier___DataSourceContract?
     var sections: [(name: String, rows: [___VARIABLE_productName:identifier___ItemModel])] = []
     
     
     // MARK: -  Constructor - init
-    init(dataSource: ___VARIABLE_productName:identifier___DataSource) {
+    init(dataSource: ___VARIABLE_productName:identifier___DataSourceContract) {
         self.dataSource = dataSource
     }    
 }
